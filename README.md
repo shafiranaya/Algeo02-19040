@@ -46,7 +46,9 @@ Project is: _in progress_, _finished_, _no longer continue_ and why?
 Add here credits. Project inspired by..., based on...
 
 ## Contact
-Created by:
-Gayuh Tri Rahutami (@wundersmith)
-Nabelanita Utami (@nabelanita)
-Shafira Naya (@shafiranaya)
+Created by:  
+Shafira Naya ([@shafiranaya]) - 13519040  
+Nabelanita Utami ([@nabelanita]) - 13519104  
+Gayuh Tri Rahutami ([@wundersmith]) - 13519192  
+
+
