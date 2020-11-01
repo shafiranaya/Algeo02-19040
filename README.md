@@ -1,4 +1,4 @@
-# Project Name
+# Tugas Besar 2 Aljabar Linear dan Geometri
 > Here goes your awesome project description!
 
 ## Table of contents
@@ -46,4 +46,7 @@ Project is: _in progress_, _finished_, _no longer continue_ and why?
 Add here credits. Project inspired by..., based on...
 
 ## Contact
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
+Created by:
+Gayuh Tri Rahutami (@wundersmith)
+Nabelanita Utami (@nabelanita)
+Shafira Naya (@shafiranaya)
