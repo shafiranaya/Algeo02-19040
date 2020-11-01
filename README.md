@@ -47,8 +47,8 @@ Add here credits. Project inspired by..., based on...
 
 ## Contact
 Created by:  
-Shafira Naya ([@shafiranaya]) - 13519040  
-Nabelanita Utami ([@nabelanita]) - 13519104  
-Gayuh Tri Rahutami ([@wundersmith]) - 13519192  
+1. Shafira Naya (@shafiranaya) - 13519040  
+2. Nabelanita Utami (@nabelanita) - 13519104  
+3. Gayuh Tri Rahutami (@wundersmith) - 13519192  
 
 
