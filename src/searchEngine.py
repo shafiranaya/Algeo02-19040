@@ -1,6 +1,4 @@
 import nltk
-nltk.download('stopwords')
-nltk.download('punkt')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize 
 import math
@@ -71,6 +69,14 @@ while namaFile != '0' : #berhenti mengambil input jika user memasukkan 0
     for w in filteredFile:
         if w in term:
             fileTable[term.index(w)] += 1
+        else:
+            fileTable.append(1)
+            for i in range (len(termTable)):
+                if i == 0:
+                    termTable[i].append(w)
+                else:
+                    termTable[i].append(0)
+
 
     # menghitung dot product dari query dan file ke-i serta norma file ke-n
     dotProduct = 0
@@ -84,7 +90,7 @@ while namaFile != '0' : #berhenti mengambil input jika user memasukkan 0
 
     fileInfo = []
     # menyimpan similarity dari file ke-i
-    fileInfo.append(round(abs((dotProduct/(fileNorm*queryNorm)) - 1),2))
+    fileInfo.append(round((dotProduct/(fileNorm*queryNorm)),2))
 
     # menyimpan nama file ke-i
     fileInfo.append(namaFile)
@@ -95,7 +101,10 @@ while namaFile != '0' : #berhenti mengambil input jika user memasukkan 0
     namaFile = input("Masukkan nama file: ")
 
 # sort similarityTable
-similarityTable = sorted(similarityTable,key=lambda x: x[0])  
-print(termTable)
+similarityTable = sorted(similarityTable,key=lambda x: x[0], reverse=True)  
+
+for i in range (len(termTable)):
+    print(termTable[i])
+    
 print(similarityTable)
 
