@@ -1,0 +1,65 @@
+input {
+    margin: 10px 5px;
+}
+
+body {
+    background-color: #EAE0CC;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+input[type="text"]{
+    width: 50%;
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+    height: 40px;
+    padding: 0 20px;
+}
+
+.btn{
+    background-color: #E1515F;
+    color:  #EAE0CC;
+}
+
+input[type="submit"]{
+    background-color: #2A4650;
+}
+
+#logo{
+    height: 100px;
+}
+
+#logo, #logo-text{
+    display: inline;
+    margin-bottom: 20px;
+}
+
+.result-list{
+    margin: 20px 0;
+}
+
+.navbar{
+    background-color: #2A4650;
+}
+
+.dokumen{
+    margin: 40px 0;
+}
+
+a:link{
+    color: #2F9C95;
+}
+
+a:hover{
+    color: #E1515F;
+}
+
+
