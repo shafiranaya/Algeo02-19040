@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div>
+    <h1>Upload file</h1>
+    <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+        {{ upload.hidden_tag() }} <!-- inside brakcets: class=""  (useful for styling)-->
+        {{ upload.file() }} 
+        {{ upload.submit() }} 
+    </form>
+</div>
+{% endblock %}

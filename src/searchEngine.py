@@ -1,136 +1,171 @@
 import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize 
 import math
+import sqlite3
+from sqlite3 import Error
 
-# query = input melalui search bar
-query = input("Masukkan query: ")
+def connect(db_file):
+    # membuat koneksi ke database SQLite
+    conn = None
+    try:
+        conn = sqlite3.connect(db_file)
+    except Error as e:
+        print(e)
 
-# mengubah input menjadi lower case dan menghilangkan karakter "?", ".", ";", ":", "!", ",", "/"
-query = query.lower()
-query = "".join(c for c in query if c not in ("?", ".", ";", ":", "!", ",", "/"))
-
-# mengambil stopwords dari nltk
-stopWords = set(stopwords.words('english'))
-
-# characters yang tidak diperlukan
-characters = ["?", ".", ";", ":", "!", ",", "/"]
-
-# mengubah query yang berbentuk kalimat menjadi berbentuk array of words
-tokenizedQuery = word_tokenize(query)
-
-# menghapus kata-kata yang ada di stopwords
-filteredQuery = [w for w in tokenizedQuery if not w in stopWords]
-
-# membuat term table
-termTable = []
-
-# term = kata-kata yang ada di query
-term = []
-
-# queryTable = jumlah masing-masing kata 
-queryTable = []
-
-# menghitung jumlah masing-masing kata
-for w in filteredQuery:
-    if w not in term:
-        term.append(w)
-        queryTable.append(1)
-    else:
-        queryTable[term.index(w)] += 1
-
-# menghitung norma query
-queryNorm = 0
-
-for i in queryTable:
-    queryNorm += i*i
-
-queryNorm = math.sqrt(queryNorm)
+    return conn
 
 
-# memasukkan term dan queryTable ke termTable
-termTable.append(term)
-termTable.append(queryTable)
+def selectFiles(conn):
+    """
+    Query all rows in the tasks table
+    :param conn: the Connection object
+    :return:
+    """
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM file_table")
 
-# input nama file
-namaFile = input("Masukkan nama file: ")
+    return cur.fetchall()
 
-similarityTable = []
+def searchEngine(query):
+    # inisialisasi database
+    database = r"files.db"
+    conn = connect(database)
 
-while namaFile != '0' : #berhenti mengambil input jika user memasukkan 0
-    # membuka file dan membaca isi file
-    file = open(namaFile, 'r')
-    tokenizedFile = word_tokenize(file.read())
+    # mengubah input menjadi lower case dan menghilangkan karakter "?", ".", ";", ":", "!", ",", "/"
+    query = query.lower()
+    query = "".join(c for c in query if c not in ("?", ".", ";", ":", "!", ",", "/"))
 
-    # mengubah isi yang berbentuk kalimat menjadi berbentuk array of words dan membersihkan dari karakter2 yang tidak perlu
-    filteredFile = [w for w in tokenizedFile if not w in stopWords and not w in characters]
+    # mengambil stopwords dari nltk
+    stopWords = set(stopwords.words('english'))
 
-    # mengisi tabel dokumen ke-n dengan 0
-    fileTable = [0 for i in range (len(termTable[0]))]
+    # characters yang tidak diperlukan
+    characters = ["?", ".", ";", ":", "!", ",", "/"]
 
-    # mengecek apabila kata-kata yang ada di file sama dengan di query
-    for w in filteredFile:
-        if w in term:
-            fileTable[term.index(w)] += 1
+    # mengubah query yang berbentuk kalimat menjadi berbentuk array of words
+    tokenizedQuery = word_tokenize(query)
+
+    # menghapus kata-kata yang ada di stopwords
+    filteredQuery = [w for w in tokenizedQuery if not w in stopWords]
+
+    # membuat term table
+    termTable = []
+
+    # term = kata-kata yang ada di query
+    term = []
+
+    # queryTable = jumlah masing-masing kata 
+    queryTable = []
+
+    # menghitung jumlah masing-masing kata
+    for w in filteredQuery:
+        if w not in term:
+            term.append(w)
+            queryTable.append(1)
         else:
-            fileTable.append(1)
-            for i in range (len(termTable)):
-                if i == 0:
-                    termTable[i].append(w)
-                else:
-                    termTable[i].append(0)
+            queryTable[term.index(w)] += 1
+
+    # menghitung norma query
+    queryNorm = 0
+
+    for i in queryTable:
+        queryNorm += i*i
+
+    queryNorm = math.sqrt(queryNorm)
 
 
-    # menghitung dot product dari query dan file ke-i serta norma file ke-n
-    dotProduct = 0
-    fileNorm = 0
+    # memasukkan term dan queryTable ke termTable
+    termTable.append(term)
+    termTable.append(queryTable)
 
-    for i in range (0, len(fileTable)):
-        dotProduct += fileTable[i] * queryTable[i]
-        fileNorm += fileTable[i]*fileTable[i]
+    similarityTable = []
 
-    fileNorm = math.sqrt(fileNorm)
+    # Mengambil file yang ada di database dan dimbuat menjadi array
+    fileData = selectFiles(conn)
 
-    fileInfo = []
-    # menyimpan similarity dari file ke-i
-    fileInfo.append(round((dotProduct/(fileNorm*queryNorm)),2))
+    for files in fileData: # iterasi file yang ada di array fileData
+        # Membaca data file dari database
+        # Harus diencoding soalnya bentuk data berupa byte
+        tokenizedFile = word_tokenize(files[1].decode('utf-8'))
 
-    # menyimpan nama file ke-i
-    fileInfo.append(namaFile)
+        # mengubah isi yang berbentuk kalimat menjadi berbentuk array of words dan membersihkan dari karakter2 yang tidak perlu
+        filteredFile = [w for w in tokenizedFile if not w in stopWords and not w in characters]
 
-    # memasukkan info-info tentang file ke tabel term
-    termTable.append(fileTable)
-    similarityTable.append(fileInfo)
-    namaFile = input("Masukkan nama file: ")
+        # mengisi tabel dokumen ke-n dengan 0
+        fileTable = [0 for i in range (len(termTable[0]))]
 
-# sort similarityTable
-similarityTable = sorted(similarityTable,key=lambda x: x[0], reverse=True)  
+        # mengecek apabila kata-kata yang ada di file sama dengan di query
+        for w in filteredFile:
+            # Mengubah kata-kata di file menjadi lowercase
+            w = w.lower()
 
-# mentranspose termTable
-NTerm = len(termTable[0])
-kolom = len(termTable)
-table = [[0 for j in range (kolom) ] for i in range (NTerm)]
-for i in range (NTerm):
-    for j in range (kolom):
-        table[i][j]=termTable[j][i]
+            if w in term:
+                fileTable[term.index(w)] += 1
+            else:
+                fileTable.append(1)
+                for i in range (len(termTable)):
+                    if i == 0:
+                        termTable[i].append(w)
+                    else:
+                        termTable[i].append(0)
 
-# sort table alphabetically berdasarkan term
-table = sorted(table,key=lambda x: x[0])  
 
-# Menampilkan hasil pencarian
-print("Hasil pencarian: (diurutkan dari tingkat kemiripan tertinggi)")
-for i in range (len(similarityTable)):
-    print(str(i+1)+". "+str(similarityTable[i][1]))
-    print("Jumlah kata:") # ini belum
-    print("Tingkat kemiripan: "+str(similarityTable[i][0]))
+        # menghitung dot product dari query dan file ke-i serta norma file ke-n
+        dotProduct = 0
+        fileNorm = 0
 
-# Menampilkan tabel
-print("Tabel: ")
-print("Term | Query", end=" ")
-for i in range (2,kolom):
-    print("| D"+str(i-1),end=" ")
-print()
-for i in range (NTerm):
-    for j in range (kolom):
-        print(table[i][j],end=" ")
-    print()
+        for i in range (0, len(fileTable)):
+            dotProduct += fileTable[i] * queryTable[i]
+            fileNorm += fileTable[i]*fileTable[i]
+
+        fileNorm = math.sqrt(fileNorm)
+
+        fileInfo = []
+        # menyimpan similarity dari file ke-i
+        fileInfo.append(round((dotProduct/(fileNorm*queryNorm)),2))
+
+        # menyimpan nama file ke-i
+        fileInfo.append(files[0])
+
+        # memasukkan info-info tentang file ke tabel term
+        termTable.append(fileTable)
+        similarityTable.append(fileInfo)
+
+    # sort similarityTable
+    return sorted(similarityTable,key=lambda x: x[0], reverse=True)  
+
+    # Note: fungsi searchEngine hanya mengembalikan nama file
+    # Kayaknya sih perlu buat fungsi lagi untuk tabelnya
+
+
+
+    # # mentranspose termTable
+    # NTerm = len(termTable[0])
+    # kolom = len(termTable)
+    # table = [[0 for j in range (kolom) ] for i in range (NTerm)]
+    # for i in range (NTerm):
+    #     for j in range (kolom):
+    #         table[i][j]=termTable[j][i]
+
+    # # sort table alphabetically berdasarkan term
+    # table = sorted(table,key=lambda x: x[0])  
+
+    # # Menampilkan hasil pencarian
+    # print("Hasil pencarian: (diurutkan dari tingkat kemiripan tertinggi)")
+    # for i in range (len(similarityTable)):
+    #     print(str(i+1)+". "+str(similarityTable[i][1]))
+    #     print("Jumlah kata:") # ini belum
+    #     print("Tingkat kemiripan: "+str(similarityTable[i][0]))
+
+    # # Menampilkan tabel
+    # print("Tabel: ")
+    # print("Term | Query", end=" ")
+    # for i in range (2,kolom):
+    #     print("| D"+str(i-1),end=" ")
+    # print()
+    # for i in range (NTerm):
+    #     for j in range (kolom):
+    #         print(table[i][j],end=" ")
+    #     print()
