@@ -10,8 +10,11 @@ query = input("Masukkan query: ")
 query = query.lower()
 query = "".join(c for c in query if c not in ("?", ".", ";", ":", "!", ",", "/"))
 
-# mengambil stopwords fari nltk
+# mengambil stopwords dari nltk
 stopWords = set(stopwords.words('english'))
+
+# characters yang tidak diperlukan
+characters = ["?", ".", ";", ":", "!", ",", "/"]
 
 # mengubah query yang berbentuk kalimat menjadi berbentuk array of words
 tokenizedQuery = word_tokenize(query)
@@ -59,8 +62,8 @@ while namaFile != '0' : #berhenti mengambil input jika user memasukkan 0
     file = open(namaFile, 'r')
     tokenizedFile = word_tokenize(file.read())
 
-    # mengubah isi yang berbentuk kalimat menjadi berbentuk array of words
-    filteredFile = [w for w in tokenizedFile if not w in stopWords]
+    # mengubah isi yang berbentuk kalimat menjadi berbentuk array of words dan membersihkan dari karakter2 yang tidak perlu
+    filteredFile = [w for w in tokenizedFile if not w in stopWords and not w in characters]
 
     # mengisi tabel dokumen ke-n dengan 0
     fileTable = [0 for i in range (len(termTable[0]))]
@@ -103,8 +106,31 @@ while namaFile != '0' : #berhenti mengambil input jika user memasukkan 0
 # sort similarityTable
 similarityTable = sorted(similarityTable,key=lambda x: x[0], reverse=True)  
 
-for i in range (len(termTable)):
-    print(termTable[i])
-    
-print(similarityTable)
+# mentranspose termTable
+NTerm = len(termTable[0])
+kolom = len(termTable)
+table = [[0 for j in range (kolom) ] for i in range (NTerm)]
+for i in range (NTerm):
+    for j in range (kolom):
+        table[i][j]=termTable[j][i]
 
+# sort table alphabetically berdasarkan term
+table = sorted(table,key=lambda x: x[0])  
+
+# Menampilkan hasil pencarian
+print("Hasil pencarian: (diurutkan dari tingkat kemiripan tertinggi)")
+for i in range (len(similarityTable)):
+    print(str(i+1)+". "+str(similarityTable[i][1]))
+    print("Jumlah kata:") # ini belum
+    print("Tingkat kemiripan: "+str(similarityTable[i][0]))
+
+# Menampilkan tabel
+print("Tabel: ")
+print("Term | Query", end=" ")
+for i in range (2,kolom):
+    print("| D"+str(i-1),end=" ")
+print()
+for i in range (NTerm):
+    for j in range (kolom):
+        print(table[i][j],end=" ")
+    print()
