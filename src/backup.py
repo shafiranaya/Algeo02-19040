@@ -1,35 +1,5 @@
-import nltk
-nltk.download('stopwords')
-nltk.download('punkt')
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize 
-import math
-import sqlite3
-from sqlite3 import Error
-
-def connect(db_file):
-    # membuat koneksi ke database SQLite
-    conn = None
-    try:
-        conn = sqlite3.connect(db_file)
-    except Error as e:
-        print(e)
-
-    return conn
-
-
-def selectFiles(conn):
-    """
-    Query all rows in the tasks table
-    :param conn: the Connection object
-    :return:
-    """
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM file_table")
-
-    return cur.fetchall()
-
-def searchEngine(query):
+# Fungsi yang me-return tabel
+def displayTable(query):
     # inisialisasi database
     database = r"files.db"
     conn = connect(database)
@@ -84,14 +54,11 @@ def searchEngine(query):
 
     # Mengambil file yang ada di database dan dimbuat menjadi array
     fileData = selectFiles(conn)
-    
+
     for files in fileData: # iterasi file yang ada di array fileData
         # Membaca data file dari database
         # Harus diencoding soalnya bentuk data berupa byte
         tokenizedFile = word_tokenize(files[1].decode('utf-8'))
-
-        # menghitung wordcount
-        wordCount = len(tokenizedFile)
 
         # mengubah isi yang berbentuk kalimat menjadi berbentuk array of words dan membersihkan dari karakter2 yang tidak perlu
         filteredFile = [w for w in tokenizedFile if not w in stopWords and not w in characters]
@@ -113,6 +80,7 @@ def searchEngine(query):
                         termTable[i].append(w)
                     else:
                         termTable[i].append(0)
+        # End for
 
 
         # menghitung dot product dari query dan file ke-i serta norma file ke-n
@@ -122,41 +90,30 @@ def searchEngine(query):
         for i in range (0, len(fileTable)):
             dotProduct += fileTable[i] * queryTable[i]
             fileNorm += fileTable[i]*fileTable[i]
+        # End for
 
         fileNorm = math.sqrt(fileNorm)
 
         fileInfo = []
         # menyimpan similarity dari file ke-i
-        fileInfo.append(round((dotProduct/(fileNorm*queryNorm)),2))
+        fileInfo.append((dotProduct/(fileNorm*queryNorm)))
 
         # menyimpan nama file ke-i
         fileInfo.append(files[0])
 
-        # menyimpan word count file ke-i
-        fileInfo.append(wordCount)
-
         # memasukkan info-info tentang file ke tabel term
         termTable.append(fileTable)
         similarityTable.append(fileInfo)
-    
-    # End for
 
-    # sort similarityTable
-    similarityTable = sorted(similarityTable,key=lambda x: x[0], reverse=True) 
-    
+    # End for
     # mentranspose termTable
     NTerm = len(termTable[0])
     kolom = len(termTable)
-    sortedTermTable = [[0 for j in range (kolom) ] for i in range (NTerm)]
+    table = [[0 for j in range (kolom) ] for i in range (NTerm)]
         
     for i in range (NTerm):
         for j in range (kolom):
-            sortedTermTable[i][j]=termTable[j][i]
-            
-    # sort sortedTermTable
-    sortedTermTable = sorted(sortedTermTable,key=lambda x:x[0])
-
-    # sort similarityTable
-    return (similarityTable, sortedTermTable)  
-
-    # Note: fungsi searchEngine hanya mengembalikan nama file
+            table[i][j]=termTable[j][i]
+    # sort table
+    table = sorted(table,key=lambda x:x[0])
+    return (table)
