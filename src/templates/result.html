@@ -16,13 +16,16 @@
 <h1>Similarity Table</h1> 
 <div class="table-container">
     <table class="table similarity-table">
-        <tr>
-            <th scope="col">Term</th>
-            <th scope="col">Query</th>
-            {% for i in range (2,kolom) %}
-            <th scope="col">Dokumen {{i-1}}</th>
-            {% endfor %}
-        </tr>
+        <thead>
+            <tr>
+                <th scope="col">Term</th>
+                <th scope="col">Query</th>
+                {% for i in range (2,kolom) %}
+                <th scope="col">Dokumen {{i-1}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
             {% for i in range (NTerm) %}
                 <tr>
                 {% for j in range (kolom) %}
@@ -44,6 +47,7 @@
                 </tr>
             {% endfor %}
         </tr>
+        </tbody>
     </table>
 </div>
 

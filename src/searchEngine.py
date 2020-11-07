@@ -34,15 +34,18 @@ def searchEngine(query):
     database = r"files.db"
     conn = connect(database)
 
-    # mengubah input menjadi lower case dan menghilangkan karakter "?", ".", ";", ":", "!", ",", "/"
+    # characters yang tidak diperlukan
+    characters = ["?", ".", ";", ":", "!", ",", "/", "&", "@", "#", "$", "%", "^", "&", "*", "(", ")"]
+
+    # mengubah input menjadi lower case dan menghilangkan karakter yang tidak diperlukan
     query = query.lower()
-    query = "".join(c for c in query if c not in ("?", ".", ";", ":", "!", ",", "/"))
+    query = "".join(c for c in query if c not in characters)
 
     # mengambil stopwords dari nltk
     stopWords = set(stopwords.words('english'))
 
-    # characters yang tidak diperlukan
-    characters = ["?", ".", ";", ":", "!", ",", "/"]
+    # mengambil stopwords dari nltk
+    stopWords = set(stopwords.words('english'))
 
     # mengubah query yang berbentuk kalimat menjadi berbentuk array of words
     tokenizedQuery = word_tokenize(query)
@@ -144,15 +147,15 @@ def displayTable(query):
     database = r"files.db"
     conn = connect(database)
 
-    # mengubah input menjadi lower case dan menghilangkan karakter "?", ".", ";", ":", "!", ",", "/"
+    # characters yang tidak diperlukan
+    characters = ["?", ".", ";", ":", "!", ",", "/", "&", "@", "#", "$", "%", "^", "&", "*", "(", ")"]
+
+    # mengubah input menjadi lower case dan menghilangkan karakter yang tidak diperlukan
     query = query.lower()
-    query = "".join(c for c in query if c not in ("?", ".", ";", ":", "!", ",", "/"))
+    query = "".join(c for c in query if c not in characters)
 
     # mengambil stopwords dari nltk
     stopWords = set(stopwords.words('english'))
-
-    # characters yang tidak diperlukan
-    characters = ["?", ".", ";", ":", "!", ",", "/"]
 
     # mengubah query yang berbentuk kalimat menjadi berbentuk array of words
     tokenizedQuery = word_tokenize(query)
@@ -242,10 +245,12 @@ def displayTable(query):
         # memasukkan info-info tentang file ke tabel term
         termTable.append(fileTable)
         similarityTable.append(fileInfo)
+
         # mentranspose termTable
         NTerm = len(termTable[0])
         kolom = len(termTable)
         table = [[0 for j in range (kolom) ] for i in range (NTerm)]
+        
         for i in range (NTerm):
             for j in range (kolom):
                 table[i][j]=termTable[j][i]
