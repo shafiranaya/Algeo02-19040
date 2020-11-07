@@ -13,26 +13,40 @@
 </ol>
 {% endfor %}
 
-<h1>Tabel</h1> 
-<table>
-    <tr>
-        <th>Term</th>
-        <th>Query</th>
-        {% for i in range (2,kolom) %}
-        <th>Dokumen {{i-1}}</th>
-        {% endfor %}
-    </tr>
-        {% for i in range (NTerm) %}
-            <tr>
-            {% for j in range (kolom) %}
-            <td>
-                {{tableresults[i][j]}}
-            </td>
+<h1>Similarity Table</h1> 
+<div class="table-container">
+    <table class="table similarity-table">
+        <tr>
+            <th scope="col">Term</th>
+            <th scope="col">Query</th>
+            {% for i in range (2,kolom) %}
+            <th scope="col">Dokumen {{i-1}}</th>
             {% endfor %}
-            </tr>
-        {% endfor %}
-    </tr>
-</table>
+        </tr>
+            {% for i in range (NTerm) %}
+                <tr>
+                {% for j in range (kolom) %}
+
+                    <!-- Jika kolom word maka th -->
+                    {% if j == 0 %}
+                    <th scope="row">
+                        {{tableresults[i][j]}}
+                    </th>
+
+                    <!-- selain itu td -->
+                    {% else %}
+                    <td>
+                        {{tableresults[i][j]}}
+                    </td>
+                    {% endif %}
+
+                {% endfor %}
+                </tr>
+            {% endfor %}
+        </tr>
+    </table>
+</div>
+
 <br><br><br>
 <a href="/about">Perihal</a>
 </div>

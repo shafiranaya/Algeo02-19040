@@ -26,7 +26,7 @@ input[type="text"]{
 
 .btn{
     background-color: #E1515F;
-    color:  #EAE0CC;
+    color:  white;
 }
 
 input[type="submit"]{
@@ -62,4 +62,20 @@ a:hover{
     color: #E1515F;
 }
 
+th {
+    background-color: #2A4650;
+    color: white;
+}
+
+.similarity-table td, .similarity-table th {
+  border: 1px solid  #2A4650;
+  padding: 8px;
+}
+
+.similarity-table tr:hover {background-color: #ddd;}
+
+.table-container {
+    overflow-x:auto;
+    overflow-y: auto;
+}
 
