@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
 <div class="container center">
-    <img id="logo" src="img/logo-combined.png" alt="">
+    <img id="logo" src="{{url_for('static',filename='img/logo-combined.png')}}" alt="">
     <form action="{{ url_for('search') }}" method="POST" enctype="multipart/form-data">
         {{ search.query(id="searchbar", placeholder="Search") }} <!-- inside brakcets: class=""  (useful for styling)-->
         {{ search.submit(class="btn") }} 

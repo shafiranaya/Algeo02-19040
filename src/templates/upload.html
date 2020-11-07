@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="container center">
-    <img id="logo" src="img/logo-combined.png" alt="">
+    <img id="logo" src="{{url_for('static',filename='img/logo-combined.png')}}" alt="">
     <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
         {{ upload.hidden_tag() }}
         {{ upload.file(id="uploadedfile") }} 
