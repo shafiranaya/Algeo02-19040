@@ -1,7 +1,39 @@
 {% extends 'base.html' %}
 {% block body %}
+<div class="container">
 <h1>Search results for "{{query}}"</h1>
 {% for i in range(length) %} 
-    <h2>{{results[i][1]}}</h2>
+<ol>
+    <li>
+        <h2>{{results[i][1]}}</h2>
+        <p>Jumlah kata: (ini belom)</p>
+        <p>Tingkat kemiripan: {{results[i][0]}}</p> 
+        <p>Kalimat pertama dari dokumen (ini belom)</p>
+    </li>
+</ol>
 {% endfor %}
+
+<h1>Tabel</h1> 
+<table>
+    <tr>
+        <th>Term</th>
+        <th>Query</th>
+        {% for i in range (2,kolom) %}
+        <th>Dokumen {{i-1}}</th>
+        {% endfor %}
+    </tr>
+        {% for i in range (NTerm) %}
+            <tr>
+            {% for j in range (kolom) %}
+            <td>
+                {{tableresults[i][j]}}
+            </td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+    </tr>
+</table>
+<br><br><br>
+<a href="/about">Perihal</a>
+</div>
 {% endblock %}

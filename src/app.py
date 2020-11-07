@@ -1,6 +1,6 @@
 import os
 import sqlite3
-from searchEngine import searchEngine
+from searchEngine import searchEngine, displayTable
 from flask import Flask, flash, render_template, redirect, request, url_for
 from flask_wtf import Form
 from flask_wtf.file import FileField
@@ -54,8 +54,14 @@ class SearchQuery(Form):
 def results(search):
     # Run fungsi searchEngine dari searchEngine.py
     results = searchEngine(search.data['query'])
-    return render_template("result.html", query=search.data['query'], results=results,length=len(results))
+    # Run fungsi displayTable dari searchEngine.py
+    tableresults = displayTable(search.data['query'])
+    return render_template("result.html", query=search.data['query'], results=results, length=len(results), tableresults=tableresults, NTerm=len(tableresults),kolom=len(tableresults[0]))
 
+# Route untuk halaman about (statis)
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 if(__name__ == "__main__"):
     app.run(debug=True)
