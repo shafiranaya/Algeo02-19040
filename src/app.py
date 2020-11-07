@@ -23,7 +23,7 @@ def upload():
 
 class UploadForm(Form):
     file = FileField()
-    submit = SubmitField("Upload")
+    submit = SubmitField("Upload File")
 
 def database(name, data):
     conn = sqlite3.connect("files.db")

@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 {% block body %}
-<div>
+<div class="container center">
+    <img id="logo" src="img/logo-combined.png" alt="">
+    <form action="{{ url_for('search') }}" method="POST" enctype="multipart/form-data">
+        {{ search.query(id="searchbar", placeholder="Search") }} <!-- inside brakcets: class=""  (useful for styling)-->
+        {{ search.submit(class="btn") }} 
+    </form>
+    <button class="btn" id="file-btn">Add more files</button>    
+</div>
+<!-- <div>
     <h1>Search</h1>
     <form action="{{ url_for('search') }}" method="POST" enctype="multipart/form-data">
-        {{ search.query() }} <!-- inside brakcets: class=""  (useful for styling)-->
+        {{ search.query() }} 
         {{ search.submit() }} 
     </form>
-</div>
+</div> -->
 {% endblock %}

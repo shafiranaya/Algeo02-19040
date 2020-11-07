@@ -1,12 +1,26 @@
 {% extends 'base.html' %}
 
 {% block body %}
+<div class="container center">
+    <img id="logo" src="img/logo-combined.png" alt="">
+    <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+        {{ upload.hidden_tag() }}
+        {{ upload.file(id="uploadedfile") }} 
+        <br>
+        <p>File uploaded: <span class="file-count">0</span></p>
+        {{ upload.submit(class="btn") }} 
+        <button class="btn" disabled>Start Searching</button>
+        <br>
+    </form>
+</div>
+    
+<!-- </div>
 <div>
     <h1>Upload file</h1>
     <form action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
-        {{ upload.hidden_tag() }} <!-- inside brakcets: class=""  (useful for styling)-->
+        {{ upload.hidden_tag() }} 
         {{ upload.file() }} 
         {{ upload.submit() }} 
     </form>
-</div>
+</div> -->
 {% endblock %}
