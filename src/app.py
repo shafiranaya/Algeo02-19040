@@ -57,10 +57,10 @@ def results(search):
     
     return render_template("result.html", query=search.data['query'], results=results, length=len(results), tableresults=tableresults, NTerm=len(tableresults),kolom=len(tableresults[0]))
 
-# Route untuk halaman about (statis)
-@app.route("/about")
+# Route untuk landing page
+@app.route("/")
 def about():
-    return render_template("about.html")
+    return render_template("index.html")
 
 if(__name__ == "__main__"):
     app.run(debug=True)

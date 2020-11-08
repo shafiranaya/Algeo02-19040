@@ -82,3 +82,7 @@ th {
 tbody{
     overflow: auto;
 }
+
+#ourteam h2 {
+    text-align:center;
+}
