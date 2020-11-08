@@ -75,7 +75,10 @@ th {
 .similarity-table tr:hover {background-color: #ddd;}
 
 .table-container {
-    overflow-x:auto;
-    overflow-y: auto;
+    overflow-x: auto;
+    height: 350px;
 }
 
+tbody{
+    overflow: auto;
+}
