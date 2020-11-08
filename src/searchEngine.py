@@ -135,6 +135,9 @@ def searchEngine(query):
         # menyimpan word count file ke-i
         fileInfo.append(wordCount)
 
+        # menyimpan kalimat pertama file ke-i
+        fileInfo.append(files[1].decode('utf-8').partition('.')[0] + '.')
+
         # memasukkan info-info tentang file ke tabel term
         termTable.append(fileTable)
         similarityTable.append(fileInfo)
