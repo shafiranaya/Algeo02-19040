@@ -62,5 +62,23 @@ def results(search):
 def about():
     return render_template("index.html")
 
+# Ambil satu text
+def get_file(filename):
+    database = r"files.db"
+    conn = sqlite3.connect(database)
+    file = conn.execute('SELECT * FROM file_table WHERE name = ?',
+                        (filename,)).fetchone()
+    conn.close()
+    #if file is None:
+    #    abort(404)
+    return file
+
+# Route untuk setiap text
+@app.route('/<filename>')
+def showtext(filename):
+    file = get_file(filename)
+    content = file[1].decode('utf-8')
+    return render_template("text.html",file=file,filename=filename, content=content)
+
 if(__name__ == "__main__"):
     app.run(debug=True)
