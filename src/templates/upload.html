@@ -7,11 +7,10 @@
         {{ upload.hidden_tag() }}
         {{ upload.file(id="uploadedfile") }} 
         <br>
-        <p>File uploaded: <span class="file-count">0</span></p>
         {{ upload.submit(class="btn") }} 
-        <button class="btn" disabled>Start Searching</button>
-        <br>
     </form>
+    <a href="/search"><button class="btn">Start Searching</button></a>
+    <br>
 </div>
     
 <!-- </div>
