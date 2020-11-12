@@ -92,8 +92,8 @@ def searchEngine(query):
             # Menyimpan similarityTabele
             similarityTable.append(fileInfo)
 
-        # return similarityTable dan termtable kosong
-        return (similarityTable, [[]]) 
+        # return similarityTable dan termtable kosong, dan documents juga kosong
+        return (similarityTable, [[]],[]) 
     else:
         # menghapus kata-kata yang ada di stopwords
         filteredQuery = [w for w in tokenizedQuery if not w in stopWords]
@@ -208,6 +208,6 @@ def searchEngine(query):
                 
         # sort sortedTermTable berdasarkan term
         sortedTermTable = sorted(sortedTermTable,key=lambda x:x[0])
-
+        
         return (similarityTable, sortedTermTable, documents) 
 
