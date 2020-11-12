@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% include '_navbar.html'%}
 {% block body %}
+<br><br><br>
 <div class="container">
     <h1>{{filename}}</h1>
-    {{ content }}
+    <p>{{ content }}</p>
     <br><br>
     <a href="/search">Kembali ke search</a>
     <br><br>
