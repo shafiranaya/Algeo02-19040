@@ -3,6 +3,7 @@ nltk.download('stopwords')
 nltk.download('punkt')
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize 
+from nltk.stem import PorterStemmer
 import math
 import sqlite3
 from sqlite3 import Error
@@ -59,15 +60,6 @@ def searchEngine(query):
     tokenizedQuery = word_tokenize(query)
 
     # memeriksa apakah semua query stopword
-    """
-    allStopWords = True
-    i = 0
-    while(not allStopWords and i < len(tokenizedQuery)):
-        if(not(tokenizedQuery[i] in stopWords)):
-            allStopWords = False
-        else:
-            i += 1
-    """
     set_tokenizedQuery = set(tokenizedQuery)
     allStopWords = set_tokenizedQuery.issubset(stopWords)
 
@@ -95,8 +87,14 @@ def searchEngine(query):
         # return similarityTable dan termtable kosong, dan documents juga kosong
         return (similarityTable, [[]],[]) 
     else:
+        # melakukan stemming
+        ps = PorterStemmer()
+        stemmedQuery = []
+        for words in (tokenizedQuery):
+            stemmedQuery.append(ps.stem(words))
+
         # menghapus kata-kata yang ada di stopwords
-        filteredQuery = [w for w in tokenizedQuery if not w in stopWords]
+        filteredQuery = [w for w in stemmedQuery if not w in stopWords]
 
         # membuat term table
         termTable = []
@@ -137,8 +135,14 @@ def searchEngine(query):
             # menghitung wordcount
             wordCount = countWords(files[1])
 
+            # melakukan stemming
+            ps = PorterStemmer()
+            stemmedFile = []
+            for words in (tokenizedFile):
+                stemmedFile.append(ps.stem(words))
+
             # mengubah isi yang berbentuk kalimat menjadi berbentuk array of words dan membersihkan dari karakter2 yang tidak perlu
-            filteredFile = [w for w in tokenizedFile if not w in stopWords and not w in characters]
+            filteredFile = [w for w in stemmedFile if not w in stopWords and not w in characters]
 
             # mengisi tabel dokumen ke-n dengan 0
             fileTable = [0 for i in range (len(termTable[0]))]
