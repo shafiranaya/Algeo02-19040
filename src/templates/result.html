@@ -56,6 +56,13 @@
             </tbody>
         </table>
     </div>
+    <p>Notes:</p>
+    <ol>
+        {% for i in range (length) %}
+        <li><p>Document {{i+1}} is {{documents[j]}}</p></li>
+        {% endfor %}
+    </ol>
+
 {% endif %}
 <br><br><br>
 </div>

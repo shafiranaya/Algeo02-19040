@@ -189,7 +189,12 @@ def searchEngine(query):
         
         # End for
 
-        # sort similarityTable
+       # membuat array berisi judul dokumen, sesuai dengan urutan pada database
+        documents = []
+        for i in range(len(similarityTable)):
+            documents.append(similarityTable[i][1])
+
+        # sort similarityTable berdasarkan nilai similaritas
         similarityTable = sorted(similarityTable,key=lambda x: x[0], reverse=True) 
         
         # mentranspose termTable
@@ -201,11 +206,8 @@ def searchEngine(query):
             for j in range (kolom):
                 sortedTermTable[i][j]=termTable[j][i]
                 
-        # sort sortedTermTable
+        # sort sortedTermTable berdasarkan term
         sortedTermTable = sorted(sortedTermTable,key=lambda x:x[0])
 
-        print(similarityTable)
-        # sort similarityTable
-        return (similarityTable, sortedTermTable)  
+        return (similarityTable, sortedTermTable, documents) 
 
-    # Note: fungsi searchEngine hanya mengembalikan nama file
