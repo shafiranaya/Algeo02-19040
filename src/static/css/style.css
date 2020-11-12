@@ -6,6 +6,18 @@ body {
     background-color: #EAE0CC!important;
 }
 
+body h1,body h2,body h3,body form,body .btn {
+    font-family: 'Rubik', Arial, Helvetica, sans-serif;
+}
+
+body p, body li{
+    font-family: 'Poppins', Arial, Helvetica, sans-serif!important;
+}
+
+li::marker{
+    opacity: 0%;
+}
+
 .center {
     margin: 0;
     position: absolute;
@@ -83,6 +95,11 @@ tbody{
     overflow: auto;
 }
 
+.jumbotron{
+    background-image: url(https://images.unsplash.com/photo-1592179900427-1631dd95b04a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1774&q=80); 
+    background-size: auto, cover; 
+}
+
 #ourteam h2 {
     text-align:center;
 }
@@ -100,4 +117,4 @@ tbody{
     margin-right: .75rem;
     margin-left: .75rem;
   }
-  
+
