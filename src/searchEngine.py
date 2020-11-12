@@ -59,9 +59,13 @@ def searchEngine(query):
     tokenizedQuery = word_tokenize(query)
 
     # memeriksa apakah semua query stopwords
-    allStopwords = False
-    for query in tokenizedQuery:
-        allStopWords = query in stopWords
+    allStopWords = True
+    i = 0
+    while(not allStopWords and i < len(tokenizedQuery)):
+        if(not(tokenizedQuery[i] in stopWords)):
+            allStopWords = False
+        else:
+            i += 1
 
     similarityTable = []
     
