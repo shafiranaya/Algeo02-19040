@@ -53,13 +53,13 @@ class SearchQuery(Form):
 @app.route("/results")
 def results(search):
     # Run fungsi searchEngine dari searchEngine.py
-    (results, tableresults) = searchEngine(search.data['query'])
+    (results, tableresults, documents) = searchEngine(search.data['query'])
     
-    return render_template("result.html", query=search.data['query'], results=results, length=len(results), tableresults=tableresults, NTerm=len(tableresults),kolom=len(tableresults[0]))
+    return render_template("result.html", query=search.data['query'], results=results, length=len(results), tableresults=tableresults, NTerm=len(tableresults),kolom=len(tableresults[0]),documents=documents)
 
 # Route untuk landing page
 @app.route("/")
-def about():
+def landingpage():
     return render_template("index.html")
 
 # Ambil satu text
