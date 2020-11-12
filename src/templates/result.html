@@ -15,43 +15,45 @@
 <hr>
 {% endfor %}
 
-<h1>Similarity Table</h1> 
-<div class="table-container">
-    <table class="table similarity-table">
-        <thead>
-            <tr>
-                <th scope="col">Term</th>
-                <th scope="col">Query</th>
-                {% for i in range (2,kolom) %}
-                <th scope="col">Dokumen {{i-1}}</th>
+{% if tableresults != [[]] %}
+    <h1>Similarity Table</h1> 
+    <div class="table-container">
+        <table class="table similarity-table">
+            <thead>
+                <tr>
+                    <th scope="col">Term</th>
+                    <th scope="col">Query</th>
+                    {% for i in range (2,kolom) %}
+                    <th scope="col">Dokumen {{i-1}}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range (NTerm) %}
+                    <tr>
+                    {% for j in range (kolom) %}
+
+                        <!-- Jika kolom word maka th -->
+                        {% if j == 0 %}
+                        <th scope="row">
+                            {{tableresults[i][j]}}
+                        </th>
+
+                        <!-- selain itu td -->
+                        {% else %}
+                        <td>
+                            {{tableresults[i][j]}}
+                        </td>
+                        {% endif %}
+
+                    {% endfor %}
+                    </tr>
                 {% endfor %}
             </tr>
-        </thead>
-        <tbody>
-            {% for i in range (NTerm) %}
-                <tr>
-                {% for j in range (kolom) %}
-
-                    <!-- Jika kolom word maka th -->
-                    {% if j == 0 %}
-                    <th scope="row">
-                        {{tableresults[i][j]}}
-                    </th>
-
-                    <!-- selain itu td -->
-                    {% else %}
-                    <td>
-                        {{tableresults[i][j]}}
-                    </td>
-                    {% endif %}
-
-                {% endfor %}
-                </tr>
-            {% endfor %}
-        </tr>
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
+{% endif %}
 
 <br><br><br>
 <a href="/">Return to main page</a>
