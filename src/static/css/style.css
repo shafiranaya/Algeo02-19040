@@ -90,3 +90,14 @@ tbody{
 .navbar-dark{
     color: white;
 }
+
+#ourteam .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  #ourteam .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+  }
+  

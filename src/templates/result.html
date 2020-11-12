@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+{% include '_navbar.html'%}
 {% block body %}
+<br><br><br>
 <div class="container">
 <h1>Search results for "{{query}}"</h1>
+<p>Found {{length}} results</p>
 {% for i in range(length) %} 
 <ul>
     <li>
@@ -32,20 +35,20 @@
                 {% for i in range (NTerm) %}
                     <tr>
                     {% for j in range (kolom) %}
-
-                        <!-- Jika kolom word maka th -->
-                        {% if j == 0 %}
-                        <th scope="row">
-                            {{tableresults[i][j]}}
-                        </th>
-
-                        <!-- selain itu td -->
-                        {% else %}
-                        <td>
-                            {{tableresults[i][j]}}
-                        </td>
+                        <!-- Hanya nampilin yang ada di query -->
+                        {% if tableresults[i][1]>0 %}
+                            <!-- Jika kolom word maka th -->
+                            {% if j == 0 %}
+                            <th scope="row">
+                                {{tableresults[i][j]}}
+                            </th>
+                            <!-- selain itu td -->
+                            {% else %}
+                            <td>
+                                {{tableresults[i][j]}}
+                            </td>
+                            {% endif %}
                         {% endif %}
-
                     {% endfor %}
                     </tr>
                 {% endfor %}
@@ -54,8 +57,6 @@
         </table>
     </div>
 {% endif %}
-
 <br><br><br>
-<a href="/">Return to main page</a>
 </div>
 {% endblock %}

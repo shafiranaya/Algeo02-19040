@@ -58,7 +58,8 @@ def searchEngine(query):
     # mengubah query yang berbentuk kalimat menjadi berbentuk array of words
     tokenizedQuery = word_tokenize(query)
 
-    # memeriksa apakah semua query stopwords
+    # memeriksa apakah semua query stopword
+    """
     allStopWords = True
     i = 0
     while(not allStopWords and i < len(tokenizedQuery)):
@@ -66,6 +67,9 @@ def searchEngine(query):
             allStopWords = False
         else:
             i += 1
+    """
+    set_tokenizedQuery = set(tokenizedQuery)
+    allStopWords = set_tokenizedQuery.issubset(stopWords)
 
     similarityTable = []
     

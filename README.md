@@ -7,6 +7,7 @@
 * [Setup](#setup)
 * [Status](#status)
 * [Inspiration](#inspiration)
+* [Credits](#credits)
 * [Contact](#contact)
 
 ## General info
@@ -19,6 +20,10 @@ Add more general information about project. What the purpose of the project is? 
 1. Install python
 2. Install nltk
 3. Install flask
+4. `git clone https://github.com/shafiranaya/Algeo02-19040`
+5. `cd src`
+6. `python3 app.py`
+7. Go to http://127.0.0.1:5000/
 
 ## Code Examples
 Show examples of usage:
@@ -29,6 +34,9 @@ Project is: _in progress_, _finished_, _no longer continue_ and why?
 
 ## Inspiration
 Add here credits. Project inspired by..., based on...
+
+## Credits
+Unsplash
 
 ## Contact
 Created by:  
