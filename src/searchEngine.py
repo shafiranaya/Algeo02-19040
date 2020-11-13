@@ -212,6 +212,6 @@ def searchEngine(query):
                 
         # sort sortedTermTable berdasarkan term
         sortedTermTable = sorted(sortedTermTable,key=lambda x:x[0])
-        
+
         return (similarityTable, sortedTermTable, documents) 
 

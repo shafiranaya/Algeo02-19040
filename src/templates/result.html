@@ -26,8 +26,8 @@
                 <tr>
                     <th scope="col">Term</th>
                     <th scope="col">Query</th>
-                    {% for i in range (2,kolom) %}
-                    <th scope="col">Document {{i-1}}</th>
+                    {% for files in fileData %}
+                    <th scope="col">{{files[0]}}</th>
                     {% endfor %}
                 </tr>
             </thead>
@@ -59,14 +59,14 @@
     <br>
 
     
-    <p>Notes:</p>
+    <!-- <p>Notes:</p>
     
 
     <ol>
         {% for i in range (length) %}
         <li><p>Document {{i+1}} is {{documents[i]}}</p></li>
         {% endfor %}
-    </ol> 
+    </ol>  -->
 
     
 
