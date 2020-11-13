@@ -1,5 +1,5 @@
-# Tugas Besar 2 Aljabar Linear dan Geometri
-> Program ini adalah program search engine yang dibuat berdasarkan similarity cosine
+# SandBox
+> Website ini adalah search engine yang memanfaatkan program yang dibuat berdasarkan similarity cosine
 
 ## Table of contents
 * [General info](#general-info)
@@ -11,15 +11,15 @@
 * [Contact](#contact)
 
 ## General info
-Add more general information about project. What the purpose of the project is? Motivation?
+SandBox merupakan website search engine pencarian dokumen yang memanfaatkan similarity cosine dalam pencariannya. Pengguna dapat mengupload file untuk disertakan ke dalam database pencarian atau mamsukkan query untuk memulai pencarian dokumen. Website akan menampilkan hasil dokumen secara terurut berdasarkan tingkat kesamaannya. Setiap dokumen akan ditampilkan nama file, jumlah kata, tingkat kesamaan, serta kalimat pertama dari file. Setiap dokumen yang ditampilkan pada halaman hasil dapat dibaca oleh pengguna dengan cara meng-klik nama file dari dokumen tersebut. Pada akhir halaman hasil ditampilkan pula tabel kesamaan yang berisi jumlah kemunculan query pada tiap dokumen yang tersedia pada database.
 
 ## Screenshots
 ![Example screenshot](./img/screenshot.png)
 
 ## Setup
-1. Install python
+1. Install Python 3
 2. Install nltk
-3. Install flask
+3. Install flask, flask_wtf
 4. `git clone https://github.com/shafiranaya/Algeo02-19040`
 5. `cd src`
 6. `python3 app.py`
