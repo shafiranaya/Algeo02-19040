@@ -84,8 +84,8 @@ def searchEngine(query):
             # Menyimpan similarityTabele
             similarityTable.append(fileInfo)
 
-        # return similarityTable dan termtable kosong, dan documents juga kosong
-        return (similarityTable, [[]],[]) 
+        # return similarityTable dan termtable kosong
+        return (similarityTable, [[]]) 
     else:
         # melakukan stemming
         ps = PorterStemmer()
@@ -192,12 +192,12 @@ def searchEngine(query):
             similarityTable.append(fileInfo)
         
         # End for
-
+        """
        # membuat array berisi judul dokumen, sesuai dengan urutan pada database
         documents = []
         for i in range(len(similarityTable)):
             documents.append(similarityTable[i][1])
-
+        """
         # sort similarityTable berdasarkan nilai similaritas
         similarityTable = sorted(similarityTable,key=lambda x: x[0], reverse=True) 
         
@@ -213,5 +213,5 @@ def searchEngine(query):
         # sort sortedTermTable berdasarkan term
         sortedTermTable = sorted(sortedTermTable,key=lambda x:x[0])
 
-        return (similarityTable, sortedTermTable, documents) 
+        return (similarityTable, sortedTermTable) 
 

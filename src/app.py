@@ -52,13 +52,13 @@ class SearchQuery(Form):
 # Route untuk halaman hasil searching
 @app.route("/results")
 def results(search):
-    # Run fungsi searchEngine dari searchEngine.py
     database = r"files.db"
     conn = sqlite3.connect(database)
     file = conn.execute('SELECT * FROM file_table').fetchall()
-    (results, tableresults, documents) = searchEngine(search.data['query'])
+    # Run fungsi searchEngine dari searchEngine.py
+    (results, tableresults) = searchEngine(search.data['query'])
     
-    return render_template("result.html", query=search.data['query'], results=results, length=len(results), tableresults=tableresults, NTerm=len(tableresults),kolom=len(tableresults[0]),documents=documents, fileData=file)
+    return render_template("result.html", query=search.data['query'], results=results, length=len(results), tableresults=tableresults, NTerm=len(tableresults),kolom=len(tableresults[0]),fileData=file)
 
 # Route untuk landing page
 @app.route("/")
