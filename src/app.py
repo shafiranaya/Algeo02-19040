@@ -83,5 +83,6 @@ def showtext(filename):
     content = file[1].decode('utf-8')
     return render_template("text.html",file=file,filename=filename, content=content)
 
+
 if(__name__ == "__main__"):
     app.run(debug=True)
