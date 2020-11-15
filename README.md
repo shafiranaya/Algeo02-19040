@@ -38,19 +38,6 @@ pip install flask_wtf
 `python3 app.py`
 7. The terminal will give you a link where the website is hosted. (For most cases it's http://127.0.0.1:5000/)
 
-## How to Use
-Upload
-1. Click "Upload" on the navbar or go to http://127.0.0.1:5000/upload
-2. Click "Choose File"
-3. Select your .txt file
-4. Upload by clicking "Upload File"
-<br/>
-Search
-1. Click "Search" on the navbar or go to http://127.0.0.1:5000/search <br/>
-2. Type your query<br/>
-3. Click "Search"<br/>
-
-
 ## Status
 Project is: Finished!
 
