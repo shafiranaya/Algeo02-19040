@@ -31,7 +31,7 @@ pip install flask
 pip install flask_wtf
 ```
 3. Type the following command inside the terminal to clone the project: <br />
-`git clone https://github.com/shafiranaya/Algeo02-19040`
+`git clone https://github.com/shafiranaya/Algeo02-19040.git`
 5. Move to `src` folder by typing this command: <br />
 `cd Algeo02-19040/src`
 6. Run the app by typing: <br />
