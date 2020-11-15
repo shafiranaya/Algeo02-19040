@@ -5,6 +5,7 @@
 * [General info](#general-info)
 * [Screenshots](#screenshots)
 * [Setup](#setup)
+* [How to Use](#how-to-use)
 * [Status](#status)
 * [Credits](#credits)
 * [Contact](#contact)
@@ -34,9 +35,15 @@ pip install flask_wtf
 `python3 app.py`
 7. The terminal will give you a link where the website is hosted. (For most cases it's http://127.0.0.1:5000/)
 
-## Code Examples
-Show examples of usage:
-`put-your-code-here`
+## How to Use
+Upload
+1. Click "Upload" on the navbar or go to http://127.0.0.1:5000/upload
+2. Select your .txt file
+3. Upload
+Search
+1. Click "Search" on the navbar or go to http://127.0.0.1:5000/search
+2. Type your query
+3. Click "Search"
 
 ## Status
 Project is: Finished!
