@@ -17,7 +17,10 @@ You can also upload your own document to be included inside our database. Direct
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot.png)
+![Landing page](./src/static/img/screenshot1.png)
+![Upload](./src/static/img/screenshot2.png)
+![Search](./src/static/img/screenshot3.png)
+
 
 ## Setup
 1. Install the latest Python version from the website https://www.python.org/downloads/. Make sure the version that you install is higher than Python 3.0.0
@@ -38,13 +41,15 @@ pip install flask_wtf
 ## How to Use
 Upload
 1. Click "Upload" on the navbar or go to http://127.0.0.1:5000/upload
-2. Select your .txt file
-3. Upload
+2. Click "Choose File"
+3. Select your .txt file
+4. Upload by clicking "Upload File"
 <br/>
 Search
-1. Click "Search" on the navbar or go to http://127.0.0.1:5000/search
-2. Type your query
-3. Click "Search"
+1. Click "Search" on the navbar or go to http://127.0.0.1:5000/search <br/>
+2. Type your query<br/>
+3. Click "Search"<br/>
+
 
 ## Status
 Project is: Finished!
