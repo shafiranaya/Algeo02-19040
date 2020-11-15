@@ -21,7 +21,8 @@ You can also upload your own document to be included inside our database. Direct
 ## Setup
 1. Install the latest Python version from the website https://www.python.org/downloads/. Make sure the version that you install is higher than Python 3.0.0
 2. Install nltk, flask, flask_wtf by entering the following command inside your terminal:<br />
-```pip install nltk
+```
+pip install nltk
 pip install flask
 pip install flask_wtf
 ```
