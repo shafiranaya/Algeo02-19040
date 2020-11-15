@@ -1,39 +1,43 @@
 # SandBox
-> Website ini adalah search engine yang memanfaatkan program yang dibuat berdasarkan similarity cosine
+> A simple search engine website for searching documents
 
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
 * [Setup](#setup)
 * [Status](#status)
-* [Inspiration](#inspiration)
 * [Credits](#credits)
 * [Contact](#contact)
 
 ## General info
-SandBox merupakan website search engine pencarian dokumen yang memanfaatkan similarity cosine dalam pencariannya. Pengguna dapat mengupload file untuk disertakan ke dalam database pencarian atau mamsukkan query untuk memulai pencarian dokumen. Website akan menampilkan hasil dokumen secara terurut berdasarkan tingkat kesamaannya. Setiap dokumen akan ditampilkan nama file, jumlah kata, tingkat kesamaan, serta kalimat pertama dari file. Setiap dokumen yang ditampilkan pada halaman hasil dapat dibaca oleh pengguna dengan cara meng-klik nama file dari dokumen tersebut. Pada akhir halaman hasil ditampilkan pula tabel kesamaan yang berisi jumlah kemunculan query pada tiap dokumen yang tersedia pada database.
+SandBox is a simple search engine website for documents that uses similarity cosine as its searching method. Simply enter your query in the searchbar and click search. SandBox will then display the results sorted from the highest similarity rate. Every result has a clickable name that will direct you to a page where you can examine the document contents. The results page also provide a similarity table that keep count of the number of query that is found inside each document inside our database
+
+You can also upload your own document to be included inside our database. Direct to the upload page and choose the .txt file that you wish to upload. As soon as you do, other users can now find your uploaded file in their search results.
+
 
 ## Screenshots
 ![Example screenshot](./img/screenshot.png)
 
 ## Setup
-1. Install Python 3
-2. Install nltk
-3. Install flask, flask_wtf
-4. `git clone https://github.com/shafiranaya/Algeo02-19040`
-5. `cd src`
-6. `python3 app.py`
-7. Go to http://127.0.0.1:5000/
+1. Install the latest Python version from the website https://www.python.org/downloads/. Make sure the version that you install is higher than Python 3.0.0
+2. Install nltk, flask, flask_wtf by entering the following command inside your terminal:
+`pip install nltk
+pip install flask
+pip install flask_wtf`
+3. Type the following command inside the terminal to clone the project:
+`git clone https://github.com/shafiranaya/Algeo02-19040`
+5. Move to `src` folder by typing this command:
+`cd Algeo02-19040/src`
+6. Run the app by typing:
+`python3 app.py`
+7. The terminal will give you a link where the website is hosted. (For most cases it's http://127.0.0.1:5000/)
 
 ## Code Examples
 Show examples of usage:
 `put-your-code-here`
 
 ## Status
-Project is: _in progress_, _finished_, _no longer continue_ and why?
-
-## Inspiration
-Add here credits. Project inspired by..., based on...
+Project is: Finished!
 
 ## Credits
 Unsplash
