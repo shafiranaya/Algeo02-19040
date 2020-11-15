@@ -23,7 +23,8 @@ You can also upload your own document to be included inside our database. Direct
 2. Install nltk, flask, flask_wtf by entering the following command inside your terminal:<br />
 ```pip install nltk
 pip install flask
-pip install flask_wtf```
+pip install flask_wtf
+```
 3. Type the following command inside the terminal to clone the project: <br />
 `git clone https://github.com/shafiranaya/Algeo02-19040`
 5. Move to `src` folder by typing this command: <br />
