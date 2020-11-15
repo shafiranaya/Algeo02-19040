@@ -20,15 +20,15 @@ You can also upload your own document to be included inside our database. Direct
 
 ## Setup
 1. Install the latest Python version from the website https://www.python.org/downloads/. Make sure the version that you install is higher than Python 3.0.0
-2. Install nltk, flask, flask_wtf by entering the following command inside your terminal:
-`pip install nltk
-pip install flask
+2. Install nltk, flask, flask_wtf by entering the following command inside your terminal:<br />
+`pip install nltk <br/>
+pip install flask <br />
 pip install flask_wtf`
-3. Type the following command inside the terminal to clone the project:
+3. Type the following command inside the terminal to clone the project: <br />
 `git clone https://github.com/shafiranaya/Algeo02-19040`
-5. Move to `src` folder by typing this command:
+5. Move to `src` folder by typing this command: <br />
 `cd Algeo02-19040/src`
-6. Run the app by typing:
+6. Run the app by typing: <br />
 `python3 app.py`
 7. The terminal will give you a link where the website is hosted. (For most cases it's http://127.0.0.1:5000/)
 
