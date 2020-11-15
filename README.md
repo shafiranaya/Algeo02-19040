@@ -40,6 +40,7 @@ Upload
 1. Click "Upload" on the navbar or go to http://127.0.0.1:5000/upload
 2. Select your .txt file
 3. Upload
+<br/>
 Search
 1. Click "Search" on the navbar or go to http://127.0.0.1:5000/search
 2. Type your query
