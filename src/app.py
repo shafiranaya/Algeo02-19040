@@ -81,6 +81,8 @@ def get_file(filename):
 def showtext(filename):
     file = get_file(filename)
     content = file[1].decode('utf-8')
+
+    content = content.split("\n")
     return render_template("text.html",file=file,filename=filename, content=content)
 
 
