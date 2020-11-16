@@ -29,14 +29,15 @@ You can also upload your own document to be included inside our database. Direct
 pip install nltk
 pip install flask
 pip install flask_wtf
-```
+```  
+   If the command above doesn't work, try to use `pip3` instead of `pip`  
 3. Type the following command inside the terminal to clone the project: <br />
-`git clone https://github.com/shafiranaya/Algeo02-19040.git`
-5. Move to `src` folder by typing this command: <br />
-`cd Algeo02-19040/src`
-6. Run the app by typing: <br />
-`python3 app.py`
-7. The terminal will give you a link where the website is hosted. (For most cases it's http://127.0.0.1:5000/)
+   `git clone https://github.com/shafiranaya/Algeo02-19040.git`  
+4. Move to `src` folder by typing this command: <br />
+   `cd Algeo02-19040/src`  
+5. Run the app by typing: <br />
+   `python3 app.py`  
+6. The terminal will give you a link where the website is hosted. (For most cases it's http://127.0.0.1:5000/)  
 
 ## Status
 Project is: Finished!
