@@ -22,38 +22,30 @@ You can also upload your own document to be included inside our database. Direct
 
 ## Setup
 1. Install the latest Python version from the website https://www.python.org/downloads/. Make sure the version that you install is higher than Python 3.0.0
-2. Install NLTK.  
-   - For Mac/Unix user, enter following command inside your terminal:  
-     ```
-     pip install nltk
-     ```  
-     If the command above doesn't work, try to use `pip3` instead of `pip`  
-   
-   - For Windows user, follow the instruction from NLTK's official website https://www.nltk.org/install.html. 
-
-3. Install flask, flask_wtf by entering the following command inside your terminal:<br />
+2. Install NLTK, flask, and flask_wtf by entering the following command inside your terminal:<br />
    ```
+   pip install nltk
    pip install flask
    pip install flask_wtf
    ```  
    If the command above doesn't work, try to use `pip3` instead of `pip`  
    
-4. Type the following command inside the terminal to clone the project: <br />
+3. Type the following command inside the terminal to clone the project: <br />
    ```
    git clone https://github.com/shafiranaya/Algeo02-19040.git
    ```  
    
-5. Move to `src` folder by typing this command: <br />
+4. Move to `src` folder by typing this command: <br />
    ```
    cd Algeo02-19040/src
    ```  
    
-6. Run the app by typing: <br />
+5. Run the app by typing: <br />
    ```
    python3 app.py
    ```  
    
-7. The terminal will give you a link where the website is hosted. (For most cases it's http://127.0.0.1:5000/)  
+6. The terminal will give you a link where the website is hosted. (For most cases it's http://127.0.0.1:5000/)  
 
 ## Status
 Project is: Finished!
